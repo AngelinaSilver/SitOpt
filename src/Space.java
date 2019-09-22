@@ -44,6 +44,10 @@ public class Space {
 		res.setAttribute("id", String.valueOf( _id ) );
 		res.setAttribute("room", String.valueOf( _is_room ) );
 		res.setAttribute("cap", String.valueOf( _capacity ) );
+		res.setAttribute("x", String.valueOf( _x ) );
+		res.setAttribute("y", String.valueOf( _y ) );
+		res.setAttribute("w", String.valueOf( _w ) );
+		res.setAttribute("h", String.valueOf( _h ) );
 		return res;
 	}
 	
@@ -58,6 +62,18 @@ public class Space {
 
 			String cap = eElement.getAttribute("cap");
 			_capacity = Integer.parseInt(cap);
+
+			String x = eElement.getAttribute("x");
+			_x = Integer.parseInt(x);
+
+			String y = eElement.getAttribute("y");
+			_y = Integer.parseInt(y);
+
+			String w = eElement.getAttribute("w");
+			_w = Integer.parseInt(w);
+
+			String h = eElement.getAttribute("h");
+			_h = Integer.parseInt(h);
 
 			String room = eElement.getAttribute("room");
 			_is_room = Boolean.parseBoolean(room);
