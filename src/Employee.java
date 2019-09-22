@@ -53,6 +53,7 @@ public class Employee {
 	public boolean equals(Object obj) {
 		return get_id() == ((Employee)obj).get_id();
 	}
+	
 	public Employee( Node node, Company company ) {
 		
         if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -92,7 +93,9 @@ public class Employee {
 			String space_id_str = eElement.getAttribute("space_id");
 			int space_id = Integer.parseInt(space_id_str);
 			// find the space in the building
-			set_space(b.get_space(space_id));
+			Space space = b.get_space(space_id);
+			set_space(space);
+			space.add_employee(this);
         }
 	}
 

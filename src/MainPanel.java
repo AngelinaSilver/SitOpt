@@ -1,7 +1,5 @@
 import java.io.File;
 
-
-
 public class MainPanel {
 
     static Company company;
@@ -9,12 +7,7 @@ public class MainPanel {
 
     public static void main(final String[] args){
 
-        if (args.length>0){
-            String filename = args[0];
 
-
-            System.out.print("this is the jar: "+filename);
-        }
         Seating seating = new Seating();
         seating.initPanel();
         company = SimpleExample.create_company1();

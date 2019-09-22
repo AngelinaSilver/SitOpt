@@ -21,22 +21,22 @@ public class UIBuildingPopulation {
             System.out.println("error!! number of spaces shouldnt change");
         }
         int index=0;
-        while (index < currBuilding._spaces.size()-1){
+        while (index < currBuilding._spaces.size()){
             Space currSpace = currSpaces.get(index);
             Space plannedSpace = plannedSpaces.get(index);
 
             Vector<Employee> movedEmployees = new Vector<>();
             Vector<Employee> newEmployees = new Vector<>();
 
-                for (int i =0; i< currSpace._seats.size(); i++){
-                    if (plannedSpace._seats.contains(currSpace._seats.get(i))==false){
-                        movedEmployees.add(currSpace._seats.get(i));
-                    }
-                    if (currSpace._seats.contains(plannedSpace._seats.get(i)) ==false){
-                        newEmployees.add(plannedSpace._seats.get(i));
-                    }
+            for (int i =0; i< currSpace._seats.size(); i++){
+                if (plannedSpace._seats.contains(currSpace._seats.get(i))==false){
+                    movedEmployees.add(currSpace._seats.get(i));
                 }
-                _seating.occupyPlace(currSpace, movedEmployees, newEmployees);
+                if (currSpace._seats.contains(plannedSpace._seats.get(i)) ==false){
+                    newEmployees.add(plannedSpace._seats.get(i));
+                }
+            }
+            _seating.occupyPlace(currSpace, movedEmployees, newEmployees);
 
             index++;
         }
