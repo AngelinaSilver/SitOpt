@@ -46,5 +46,9 @@ public class Employee {
 		res.appendChild(xml_doc.createTextNode( _name ));
 		return res;
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		return get_id() == ((Employee)obj).get_id();
+	}
 }

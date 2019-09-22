@@ -3,10 +3,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.text.AttributedCharacterIterator;
+import java.util.HashMap;
+import java.util.Vector;
 
 enum EOccupancy{
     OCCUPIED{
@@ -42,9 +45,11 @@ enum EOccupancy{
 }
 public class Seating {
 
+
     ImagePanel bodyPanel = new ImagePanel();
     JPanel headerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
+
 
     JTextArea infoLabel = new JTextArea();
 
@@ -116,6 +121,13 @@ public class Seating {
         bodyPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         bodyPanel.setLayout(null);
 
+        //occupyPlace(space);
+        //bodyPanel.removeAll();
+
+
+
+
+
         //JPanel imagePanel = new JPanel();
         //JPanel cardpanel = new JPanel(new CardLayout());
 
@@ -138,25 +150,107 @@ public class Seating {
 
     }
 
-    private void populatePlace(Space space){
+/*
+    public class MyCircle extends JPanel{
+        int x, y;
 
-    }
+        public MyCircle(int x, int y) {
+            this.x = x;
+            this.y = y;
 
-    private void occupyPlace(int x, int y, int width, int height, final Color color){
-        final JButton button = new JButton();
-        button.setSize(width, height);
-        button.setLocation(x, y);
-        button.setBackground(color);
-        button.addActionListener(new ActionListener() {
+
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setColor(Color.RED);
+            //g2.drawOval(x,y,30,30);
+            g2.fillOval(x,y,30,30);
+
+
+        }
+
+        /*public void draw(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+            Ellipse2D.Double circle = new Ellipse2D.Double(x, y, 10, 10);
+
+            g2d.setColor(Color.GRAY);
+            g2d.fill(circle);
+        }
+
+    }*/
+
+
+
+    //X AND Y- THE TOP LEFT CORNER
+    public void occupyPlace(Space space, Vector<Employee> leave, Vector<Employee> add ){
+        int x=space.get_x();
+        int y=space.get_y();
+        int w=space.get_w();
+        int h=space.get_h();
+        int capacity= space.get_capacity();
+        int numOfSeats = space._seats.size();
+        int countr = numOfSeats;
+        //int toHightlightCounter=hightlightVacant;
+        int dist=0;
+
+        for(int i=0; i<capacity; i++){
+            final GuiPerson person = new GuiPerson();
+            person.setSize(15, 15);
+            person.setLocation(x+dist, y);
+            if(countr >0){
+                //taken seat
+                person.setBackground(Color.RED);
+                Employee e = space._seats.elementAt(i);
+                person.setEmployee(e);
+                if(leave.contains(e)){
+                    //need to highlight this person
+                    person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+                    if(add.size()>0){ //there is new person
+                        Employee em = add.get(0);
+                        //toolTip
+                        add.remove(0);
+
+                    }
+                }
+                countr--;
+            }
+            else{
+                person.setBackground(Color.GREEN);
+                if(add.size()>0){
+                    person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+                    //change ToolTip + delete person
+                }
+
+                /*if(toHightlightCounter>0){//need to highlight this person
+                    //hightlight
+                    person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+                    toHightlightCounter--;
+                }*/
+            }
+            dist = dist +20;
+            //return this code
+            //button.setBackground(color);
+        /*button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 button.setSelected(true);
-                infoLabel.setText("Information about this place: \n"+tempMethod(color)+" sits here");
+                //return this
+                //infoLabel.setText("Information about this place: \n"+tempMethod(color)+" sits here");
                 bottomPanel.repaint();
             }
-        });
-        bodyPanel.add(button);
-        bodyPanel.repaint();
+        });*/
+            bodyPanel.add(person);
+            bodyPanel.repaint();
+
+        }
+
+    }
+
+    public void clearComponents(){
+        bodyPanel.removeAll(); //removeAllButtons
     }
 
     private String tempMethod(Color color) {
@@ -164,6 +258,18 @@ public class Seating {
             return "The Red Team";
         }else{
             return "The green Team";
+        }
+    }
+
+    public class GuiPerson extends JButton{
+        Employee employee;
+
+        public GuiPerson(){
+            super();
+        }
+
+        public void setEmployee(Employee employee) {
+            this.employee = employee;
         }
     }
 
