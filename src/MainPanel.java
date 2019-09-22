@@ -10,7 +10,7 @@ public class MainPanel {
 
         Seating seating = new Seating();
         seating.initPanel();
-        company = SimpleExample.create_company1();
+        company = SimpleExample.load_xml("C:\\Hackathon\\seating.xml");
         solver = new SolverChoco();
         solver.set_max_distance(500);
         UIBuildingPopulation ui = new UIBuildingPopulation(seating);
