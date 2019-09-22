@@ -140,8 +140,13 @@ public class SolverChoco implements SolverIntf {
 
 		// 2. Solving part
 		Solver solver = model.getSolver();
+		
+		IntVar[] vs = new IntVar[emp2seat.length+1];
+		for( int i =0; i<emp2seat.length; i++)
+			vs[i+1] = emp2seat[i];
+		vs[0] = changeCnt;
 		// 2.a define a search strategy
-		solver.setSearch(Search.minDomLBSearch(changeCnt));
+		solver.setSearch(Search.minDomLBSearch(vs));
 		if(solver.solve()) {
 			// delete spaces
 			for (int i=0; i<cmpny._employes.size(); i++ )
@@ -153,6 +158,7 @@ public class SolverChoco implements SolverIntf {
 			for ( Employee e : cmpny._employes ) {
 				int eid = emps_newids.get(e);
 				int sindx = emp2space[eid].getValue();
+				System.out.println(eid + " -> " + sindx + " seat = "+emp2seat[eid].getValue());
 				Space s = all_spaces.get(sindx);
 				e.set_space(s);
 				s._seats.add(e);
