@@ -2,6 +2,8 @@ import java.util.Vector;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Space {
 	private int _id;
@@ -44,4 +46,25 @@ public class Space {
 		res.setAttribute("cap", String.valueOf( _capacity ) );
 		return res;
 	}
+	
+	public Space( Node node , Building b) {
+		
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+        	 
+            Element eElement = (Element) node;
+	
+			String id = eElement.getAttribute("id");
+			_id = Integer.parseInt(id);
+
+			String cap = eElement.getAttribute("cap");
+			_capacity = Integer.parseInt(cap);
+
+			String room = eElement.getAttribute("room");
+			_is_room = Boolean.parseBoolean(room);
+			
+        }
+		_building = b;
+
+	}
+
 }
