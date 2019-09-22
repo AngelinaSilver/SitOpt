@@ -21,7 +21,7 @@ public class UIBuildingPopulation {
             System.out.println("error!! number of spaces shouldnt change");
         }
         int index=0;
-        while (index < currBuilding._spaces.size()-1){
+        while (index < currBuilding._spaces.size()){
             Space currSpace = currSpaces.get(index);
             Space plannedSpace = plannedSpaces.get(index);
 
