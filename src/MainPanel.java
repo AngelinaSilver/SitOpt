@@ -1,27 +1,17 @@
 import java.io.File;
 
-
-
 public class MainPanel {
 
     static Company company;
 
     public static void main(final String[] args){
 
-        if (args.length>0){
-            String filename = args[0];
 
-
-            System.out.print("this is the jar: "+filename);
-        }
         Seating seating = new Seating();
         seating.initPanel();
-        company = SimpleExample.create_company1();
+        Company company = SimpleExample.load_xml("C:\\Hackathon\\seating.xml");
         UIBuildingPopulation ui = new UIBuildingPopulation(seating);
         ui.populateOffice(company,null);
-
-
-
     }
 
     private static void readJson(String fileName){

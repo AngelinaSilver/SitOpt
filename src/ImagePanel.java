@@ -7,7 +7,6 @@ import java.io.File;
 
 public class ImagePanel extends JPanel {
     private String imagePath = "C:\\Hackathon\\map.gif";
-
     private BufferedImage myPicture=null;
     private ImageIcon icon= null;
     private JLabel picLabel=null;
