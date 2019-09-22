@@ -20,6 +20,19 @@ public class Company {
 	public void add_employee( Employee e ) { _employes.add( e ); }
 	public int get_next_employee_id() { return (_employes.lastElement().get_id() + 1); }
 
+	public boolean is_employee_without_place() {
+		Iterator empIt = _employes.iterator();
+		//group.addItem("");
+		while (empIt.hasNext()) {
+			Employee emp = (Employee) empIt.next();
+			if (emp.get_space()==null) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
 	public Group getGroupByName(String groupName) {
 		Iterator groupIt = _groups.iterator();
 		while (groupIt.hasNext()) {
