@@ -3,15 +3,21 @@ import java.io.File;
 public class MainPanel {
 
     static Company company;
+    static SolverIntf solver;
 
     public static void main(final String[] args){
 
 
         Seating seating = new Seating();
         seating.initPanel();
-        Company company = SimpleExample.load_xml("C:\\Hackathon\\seating.xml");
+        company = SimpleExample.create_company1();
+        solver = new SolverChoco();
+        solver.set_max_distance(500);
         UIBuildingPopulation ui = new UIBuildingPopulation(seating);
         ui.populateOffice(company,null);
+
+
+
     }
 
     private static void readJson(String fileName){

@@ -85,17 +85,24 @@ public class Employee {
 
 			// building id
 			String building_id_str = eElement.getAttribute("building_id");
-			int building_id = Integer.parseInt(building_id_str);
-			// find the group in the groups
-			Building b = company.get_building(building_id);
-			
-			// space id
-			String space_id_str = eElement.getAttribute("space_id");
-			int space_id = Integer.parseInt(space_id_str);
-			// find the space in the building
-			Space space = b.get_space(space_id);
-			set_space(space);
-			space.add_employee(this);
+			if (building_id_str.equals("-1"))
+			{
+				set_space(null);
+			}
+			else
+			{
+				int building_id = Integer.parseInt(building_id_str);
+				// find the group in the groups
+				Building b = company.get_building(building_id);
+				
+				// space id
+				String space_id_str = eElement.getAttribute("space_id");
+				int space_id = Integer.parseInt(space_id_str);
+				// find the space in the building
+				Space space = b.get_space(space_id);
+				set_space(space);
+				space.add_employee(this);
+			}
         }
 	}
 
