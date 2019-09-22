@@ -85,8 +85,43 @@ public class Seating {
         solveBtn.setToolTipText("One or more employees don't have attributed place! solve!");
         headerPanel.add(solveBtn);
 
+        JButton applyBtn = new JButton("Apply Solution");
+        headerPanel.add(applyBtn);
+
+        JButton cancelBtn = new JButton("Cancel Solution");
+        headerPanel.add(cancelBtn);
+
+        applyBtn.setVisible(false);
+        cancelBtn.setVisible(false);
+
         solveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //save from xml
+                //read
+                try {
+                    Company backup_comp = new Company();
+                    SimpleExample.save_to_xml("C:\\Hackathon\\backup.xml", MainPanel.company);
+                    backup_comp = SimpleExample.load_xml("C:\\Hackathon\\backup.xml");
+                    boolean res = MainPanel.solver.populate(MainPanel.company);
+                    System.out.println("res = " + res);
+                    if(res == true) {
+                        UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
+                        bp.populateOffice(backup_comp, MainPanel.company);
+                        applyBtn.setVisible(true);
+                        cancelBtn.setVisible(true);
+                    }
+                    else {
+
+                    }
+
+                }
+                catch (Exception exc) {
+                    System.out.println(exc.getMessage());
+                }
+                //if res = true -> something has changed
+
+
+
 
 
             }
