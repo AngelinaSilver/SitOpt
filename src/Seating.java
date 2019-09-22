@@ -231,13 +231,13 @@ public class Seating {
                 person.setBackground(Color.RED);
                 Employee e = space._seats.elementAt(i);
                 person.setEmployee(e);
-                person.setToolTipText("<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name()+"</html>");
+                person.setToolTipText("<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name() +" Group=" +e.get_group()+"</html>");
                 if(leave.contains(e)){
                     //need to highlight this person
                     person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
                     if(add.size()>0){ //there is new person
                         Employee em = add.get(0);
-                        String toolTip = "<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name()+" <br> Future Occupation: ID= "+ em.get_id() +"Name="+ em.get_name()+" </html> ";
+                        String toolTip = "<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name()+ " Group= "+e.get_group()+ " <br> Future Occupation: ID= "+ em.get_id() +"Name="+ em.get_name()+ " Group= "+em.get_group()+" </html> ";
                         person.setToolTipText(toolTip);
                         //toolTip
                         add.remove(0);
@@ -251,7 +251,7 @@ public class Seating {
                 if(add.size()>0){
                     person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
                     Employee e = add.get(0);
-                    person.setToolTipText("<html> Future Occupation: ID= " +e.get_id()+" Name="+e.get_name()+"</html>");
+                    person.setToolTipText("<html> Future Occupation: ID= " +e.get_id()+" Name="+e.get_name()+ " Group= "+e.get_group()+"</html>");
                     add.remove(0);
                     //change ToolTip + delete person
                 }
