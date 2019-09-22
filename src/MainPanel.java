@@ -3,6 +3,7 @@ import java.io.File;
 public class MainPanel {
 
     static Company company;
+    static Company backup_comp;
     static SolverIntf solver;
 
     public static void main(final String[] args){

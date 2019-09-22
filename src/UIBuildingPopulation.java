@@ -32,7 +32,9 @@ public class UIBuildingPopulation {
                 if (plannedSpace._seats.contains(currSpace._seats.get(i))==false){
                     movedEmployees.add(currSpace._seats.get(i));
                 }
-                if (currSpace._seats.contains(plannedSpace._seats.get(i)) ==false){
+            }
+            for (int i =0; i<plannedSpace._seats.size(); i++) {
+                if (currSpace._seats.contains(plannedSpace._seats.get(i)) == false) {
                     newEmployees.add(plannedSpace._seats.get(i));
                 }
             }

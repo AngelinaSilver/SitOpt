@@ -99,19 +99,19 @@ public class Seating {
                 //save from xml
                 //read
                 try {
-                    Company backup_comp = new Company();
+                    MainPanel.backup_comp = new Company();
                     SimpleExample.save_to_xml("C:\\Hackathon\\backup.xml", MainPanel.company);
-                    backup_comp = SimpleExample.load_xml("C:\\Hackathon\\backup.xml");
+                    MainPanel.backup_comp = SimpleExample.load_xml("C:\\Hackathon\\backup.xml");
                     boolean res = MainPanel.solver.populate(MainPanel.company);
                     System.out.println("res = " + res);
                     if(res == true) {
                         UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
-                        bp.populateOffice(backup_comp, MainPanel.company);
+                        bp.populateOffice(MainPanel.backup_comp, MainPanel.company);
                         applyBtn.setVisible(true);
                         cancelBtn.setVisible(true);
                     }
                     else {
-
+                        JOptionPane.showMessageDialog(bodyPanel, "No changes required. All Employees ");
                     }
 
                 }
@@ -120,13 +120,25 @@ public class Seating {
                 }
                 //if res = true -> something has changed
 
-
-
-
-
             }
         });
 
+        applyBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
+                bp.populateOffice(MainPanel.company, null);
+            }
+        });
+
+        cancelBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                MainPanel.company = SimpleExample.load_xml("C:\\Hackathon\\backup.xml");
+                UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
+                bp.populateOffice(MainPanel.company, null);
+            }
+        });
         //body panel
         bodyPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         bodyPanel.setLayout(null);
