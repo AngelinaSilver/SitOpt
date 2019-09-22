@@ -17,6 +17,7 @@ public class MainPanel {
         ui.populateOffice(company,null);
 
 
+
     }
 
     private static void readJson(String fileName){

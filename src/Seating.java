@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -99,19 +98,22 @@ public class Seating {
         c. gridx=2;
         c.gridy=1;
         c.ipadx = 10;
-        JButton addBtn = new JButton("Add");
+        JButton addBtn = new JButton("Add New Employee");
         headerPanel.add(addBtn, c);
 
         addBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int x = Integer.parseInt(locationTxtX.getText());
+                /*int x = Integer.parseInt(locationTxtX.getText());
                 int y = Integer.parseInt(locationTxtY.getText());
                 EOccupancy occupancyItem = (EOccupancy) occupancyCbx.getSelectedItem();
                 JButton btn = new JButton();
 
-                //occupyPlace(x, y, 16, 16, occupancyItem.getColor());
-
-                //occupyPlace(x, y, 16, 16);
+                occupyPlace(x, y, 16, 16, occupancyItem.getColor());*/
+                Company company = SimpleExample.create_company1();
+                AddEmployeeDialog dialog = new AddEmployeeDialog(frame, "Add new Employee", company);
+                dialog.setSize(500, 1000);
+                dialog.pack();
+                dialog.setVisible(true);
             }
         });
 
