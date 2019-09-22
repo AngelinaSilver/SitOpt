@@ -12,6 +12,7 @@ public class Building {
 	public Building( int id, String name ) {
 		_id = id;
 		_name = name;
+		_spaces = new Vector<Space>();
 	}
 	
 	public int get_id() { return _id; }
