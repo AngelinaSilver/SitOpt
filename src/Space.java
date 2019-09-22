@@ -8,6 +8,12 @@ public class Space {
 	private boolean _is_room;
 	private int _capacity;
 	private Building _building;
+	private int _x;
+	private int _y;
+	private int _w;
+	private int _h;
+
+
 	
 	public Vector<Employee> _seats;
 	
