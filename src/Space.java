@@ -36,6 +36,10 @@ public class Space {
 	public int get_y(){ return _y;}
 	public int get_w(){ return _w;}
 	public int get_h(){ return _h;}
+	public void add_employee(Employee emp) 
+	{
+		_seats.add(emp);
+	}
 
 
 
