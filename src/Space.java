@@ -9,13 +9,14 @@ public class Space {
 	private int _capacity;
 	private Building _building;
 	
-	public Vector<Employee> _persons;
+	public Vector<Employee> _seats;
 	
 	public Space( int id, Building b, boolean is_room, int capacity ) {
 		_id = id;
 		_building = b;
 		_is_room = is_room;
 		_capacity = capacity;
+		_seats = new Vector<Employee>();
 	}
 	
 	public int get_id() { return _id; }

@@ -8,7 +8,11 @@ public class Company {
 	public Vector<Employee> _employes;
 	public Vector<Group> _groups;
 	
-	public Company() { }
+	public Company() {
+		_buildings = new Vector<Building>();
+		_employes = new Vector<Employee>();
+		_groups = new Vector<Group>();
+	}
 	
 	public void add_building( Building b ) { _buildings.add( b ); }
 	public void add_group( Group g ) { _groups.add( g ); }

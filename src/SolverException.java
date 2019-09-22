@@ -1,5 +1,5 @@
-public class SolverException extends RuntimeException {
-  public SolverException(String errorMessage, Throwable err) {
-      super(errorMessage, err);
+public class SolverException extends Exception {
+  public SolverException(String errorMessage) {
+      super(errorMessage);
   }
 }
