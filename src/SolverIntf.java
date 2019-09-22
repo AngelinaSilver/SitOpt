@@ -1,4 +1,4 @@
- interface Solver {
+ interface SolverIntf {
 	 /**
 	  * The function would assign spaces to employees with no space.
 	  * Try to find a solution with minimum moves of already assigned employees
