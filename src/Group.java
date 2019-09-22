@@ -46,4 +46,9 @@ public class Group {
 
         }
 	}
+
+	@Override
+	public String toString() {
+		return _name.toString();
+	}
 }
