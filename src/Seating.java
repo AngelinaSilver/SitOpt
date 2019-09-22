@@ -111,7 +111,7 @@ public class Seating {
                         cancelBtn.setVisible(true);
                     }
                     else {
-                        JOptionPane.showMessageDialog(bodyPanel, "No changes required. All Employees ");
+                        JOptionPane.showMessageDialog(bodyPanel, "No changes required. All Employees are seated");
                     }
 
                 }
@@ -126,6 +126,8 @@ public class Seating {
         applyBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                applyBtn.setVisible(false);
+                cancelBtn.setVisible(false);
                 UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
                 bp.populateOffice(MainPanel.company, null);
             }
@@ -134,6 +136,8 @@ public class Seating {
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                applyBtn.setVisible(false);
+                cancelBtn.setVisible(false);
                 MainPanel.company = SimpleExample.load_xml("C:\\Hackathon\\backup.xml");
                 UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
                 bp.populateOffice(MainPanel.company, null);
@@ -230,7 +234,7 @@ public class Seating {
                 person.setToolTipText("<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name()+"</html>");
                 if(leave.contains(e)){
                     //need to highlight this person
-                    person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+                    person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
                     if(add.size()>0){ //there is new person
                         Employee em = add.get(0);
                         String toolTip = "<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name()+" <br> Future Occupation: ID= "+ em.get_id() +"Name="+ em.get_name()+" </html> ";
@@ -245,7 +249,7 @@ public class Seating {
             else{
                 person.setBackground(Color.GREEN);
                 if(add.size()>0){
-                    person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+                    person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
                     Employee e = add.get(0);
                     person.setToolTipText("<html> Future Occupation: ID= " +e.get_id()+" Name="+e.get_name()+"</html>");
                     add.remove(0);
