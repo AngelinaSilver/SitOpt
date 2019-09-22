@@ -3,6 +3,8 @@ import java.util.Vector;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
 
 public class Company {
 	public Vector<Building> _buildings;
@@ -20,6 +22,19 @@ public class Company {
 	public void add_employee( Employee e ) { _employes.add( e ); }
 	public int get_next_employee_id() { return (_employes.lastElement().get_id() + 1); }
 
+	public boolean is_employee_without_place() {
+		Iterator empIt = _employes.iterator();
+		//group.addItem("");
+		while (empIt.hasNext()) {
+			Employee emp = (Employee) empIt.next();
+			if (emp.get_space()==null) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
 	public Group getGroupByName(String groupName) {
 		Iterator groupIt = _groups.iterator();
 		while (groupIt.hasNext()) {
@@ -31,8 +46,30 @@ public class Company {
 		return null;
 	}
 	
+	public Group get_group(int id)
+	{
+		for (Group g : _groups)
+		{
+			if (g.get_id() == id)
+				return g;
+		}
+		return null;
+	}
+
+	public Building get_building(int id)
+	{
+		for (Building g : _buildings)
+		{
+			if (g.get_id() == id)
+				return g;
+		}
+		return null;
+	}
+	
+
 	public Element to_xml(Document xml_doc) {
 		Element res = xml_doc.createElement("Company");
+		xml_doc.appendChild(res);
 
 		// buildings
 		Element bres = xml_doc.createElement("Buildings");
@@ -55,4 +92,51 @@ public class Company {
 		return res;
 	}
 
+	public void load_from_xml(Document xml_doc) 
+	{
+		_buildings = new Vector<Building>();
+		_employes = new Vector<Employee>();
+		_groups = new Vector<Group>();
+
+		// check that there is only one company...
+		
+		// buildings
+		NodeList nodeList = xml_doc.getElementsByTagName("Building");
+        for (int itr = 0; itr < nodeList.getLength(); itr++) {
+        	 
+            Node node = nodeList.item(itr);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) node;
+			    add_building(new Building(eElement));
+            }
+        }
+        
+		// groups
+		NodeList groupList = xml_doc.getElementsByTagName("Group");
+        for (int itr = 0; itr < groupList.getLength(); itr++) {
+        	 
+            Node node = groupList.item(itr);
+            if (node.getNodeType() == Node.ELEMENT_NODE) 
+            {
+                Element eElement = (Element) node;
+			    add_group(new Group(eElement));
+
+            }
+        }
+        
+		// employees
+		NodeList empList = xml_doc.getElementsByTagName("Employee");
+        for (int itr = 0; itr < empList.getLength(); itr++) {
+        	 
+            Node node = empList.item(itr);
+            if (node.getNodeType() == Node.ELEMENT_NODE) 
+            {
+                Element eElement = (Element) node;
+			    add_employee(new Employee(eElement, this));
+
+            }
+        }
+ 	
+	}
 }

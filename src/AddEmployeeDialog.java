@@ -20,22 +20,29 @@ public class AddEmployeeDialog extends JDialog {
         super(frame, title, false);
 
         JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(2,2,2,2);
         gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        JLabel spacer = new JLabel(" ");
         gbc.gridx = 0;
         gbc.gridy = 0;
+        panel.add(spacer,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         panel.add(nameLabel, gbc);
 
         gbc.gridwidth = 2;
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         panel.add(nameTxt, gbc);
 
         gbc.gridwidth = 2;
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         group = new JComboBox();
         Iterator groupIt = company._groups.iterator();
         //group.addItem("");
@@ -47,24 +54,23 @@ public class AddEmployeeDialog extends JDialog {
 
         gbc.gridwidth = 1;
         gbc.gridx = 2;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         panel.add(isOffice, gbc);
 
 
 
         gbc.gridwidth = 1;
         gbc.gridx = 3;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         panel.add(isAlone, gbc);
 
-        JLabel spacer = new JLabel(" ");
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         panel.add(spacer,gbc);
 
         gbc.gridwidth = 1;
         gbc.gridx = 2;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         panel.add(confirmBtn, gbc );
 
 
