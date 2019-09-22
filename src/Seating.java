@@ -183,7 +183,7 @@ public class Seating {
 
 
     //X AND Y- THE TOP LEFT CORNER
-    private void occupyPlace(Space space, Vector<Employee> leave, Vector<Employee> add ){
+    public void occupyPlace(Space space, Vector<Employee> leave, Vector<Employee> add ){
         int x=space.get_x();
         int y=space.get_y();
         int w=space.get_w();
