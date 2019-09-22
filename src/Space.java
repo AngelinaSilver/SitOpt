@@ -53,6 +53,7 @@ public class Space {
 	
 	public Space( Node node , Building b) {
 		
+		_seats = new Vector<Employee>();
         if (node.getNodeType() == Node.ELEMENT_NODE) {
         	 
             Element eElement = (Element) node;
