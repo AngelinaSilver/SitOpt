@@ -68,7 +68,8 @@ public class SimpleExample {
 	}
 	
 	public static void main(String[] args) {
-		SolverIntf s = new Solver();
+//		SolverIntf s = new SolverMockup();
+		SolverIntf s = new SolverChoco();
 
 		Company c1 = create_company1();
 		try {
