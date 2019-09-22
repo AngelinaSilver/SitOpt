@@ -17,6 +17,19 @@
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.variables.IntVar;
 
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.OutputKeys;
+
+import org.w3c.dom.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import javax.xml.parsers.ParserConfigurationException;
+
 /**
  * Simple Hello World in Choco Solver
  * @author Jean-Guillaume FAGES (cosling)
@@ -24,22 +37,32 @@ import org.chocosolver.solver.variables.IntVar;
  */
 public class HelloWorld {
 
+//    static Company the_company;
+
     public static void main(String[] args) {
-       // The model is the main component of Choco Solver
-       Model model = new Model("Choco Solver Hello World xxx");
-       // Integer variables
-       IntVar a = model.intVar("a", new int[]{4, 6, 8}); // takes value in { 4, 6, 8 }
-       IntVar b = model.intVar("b", 0, 2); // takes value in [0, 2]
 
-       // Add an arithmetic constraint between a and b
-       // BEWARE : do not forget to call post() to force this constraint to be satisfied
-       model.arithm(a, "+", b, "<", 8).post();
+        final String xmlFilePath = "C:\\test\\SipOpt.xml";
+/*
+        Solver s = new Solver();
+    
+        Company c = SimpleExample.create_company();
+        
+        try
+        {
+        	s.populate(c);
+        }
+        catch(SolverException e)
+        {
+            e.printStackTrace();
+        }
+        
+        SimpleExample.save_to_xml(xmlFilePath, c);
+*/
+        // read the xml to company c2
+        Company c2 = SimpleExample.load_xml(xmlFilePath);
+        final String xmlFilePath2 = "C:\\test\\SipOpt2.xml";
+        SimpleExample.save_to_xml(xmlFilePath2, c2);
 
-       int i = 1;
-       // Computes all solutions : Solver.solve() returns true whenever a new feasible solution has been found
-       while (model.getSolver().solve()) {
-          System.out.println("Solution " + i++ + " found : " + a + ", " + b);
-       }
-   }
+    }
 }
             
