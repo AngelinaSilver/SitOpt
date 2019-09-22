@@ -111,7 +111,7 @@ public class Seating {
                         cancelBtn.setVisible(true);
                     }
                     else {
-                        JOptionPane.showMessageDialog(bodyPanel, "No changes required. All Employees ");
+                        JOptionPane.showMessageDialog(bodyPanel, "No changes required. All Employees are seated");
                     }
 
                 }
@@ -126,6 +126,8 @@ public class Seating {
         applyBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                applyBtn.setVisible(false);
+                cancelBtn.setVisible(false);
                 UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
                 bp.populateOffice(MainPanel.company, null);
             }
@@ -134,6 +136,8 @@ public class Seating {
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                applyBtn.setVisible(false);
+                cancelBtn.setVisible(false);
                 MainPanel.company = SimpleExample.load_xml("C:\\Hackathon\\backup.xml");
                 UIBuildingPopulation bp = new UIBuildingPopulation(Seating.this);
                 bp.populateOffice(MainPanel.company, null);
