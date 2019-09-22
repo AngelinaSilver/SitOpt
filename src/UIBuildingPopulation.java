@@ -26,17 +26,17 @@ public class UIBuildingPopulation {
             Space plannedSpace = plannedSpaces.get(index);
 
             Vector<Employee> movedEmployees = new Vector<>();
-            Vector<Employee> fakeEmployees = new Vector<>();
+            Vector<Employee> newEmployees = new Vector<>();
 
                 for (int i =0; i< currSpace._seats.size(); i++){
                     if (plannedSpace._seats.contains(currSpace._seats.get(i))==false){
                         movedEmployees.add(currSpace._seats.get(i));
                     }
                     if (currSpace._seats.contains(plannedSpace._seats.get(i)) ==false){
-                        fakeEmployees.add(new Employee(-1, "noname"));
+                        newEmployees.add(plannedSpace._seats.get(i));
                     }
                 }
-                _seating.populate(currSpace, movedEmployees, fakeEmployees);
+                _seating.occupyPlace(currSpace, movedEmployees, newEmployees);
 
             index++;
         }
