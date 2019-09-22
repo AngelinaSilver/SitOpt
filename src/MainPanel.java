@@ -5,8 +5,6 @@ public class MainPanel {
     static Company company;
 
     public static void main(final String[] args){
-
-
         Seating seating = new Seating();
         seating.initPanel();
         Company company = SimpleExample.load_xml("C:\\Hackathon\\seating.xml");

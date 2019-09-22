@@ -45,11 +45,9 @@ enum EOccupancy{
 }
 public class Seating {
 
-
     ImagePanel bodyPanel = new ImagePanel();
     JPanel headerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
-
 
     JTextArea infoLabel = new JTextArea();
 
