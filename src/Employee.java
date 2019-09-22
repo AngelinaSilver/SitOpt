@@ -8,7 +8,9 @@ public class Employee {
 	private String _name;
 	private Group _group;
 	private Space _space;
-	
+	private boolean _mustSitAlone;
+	private boolean _mustSitInRoom;
+
 	public Employee( int id, String name ) {
 		_id = id;
 		_name = name;
@@ -20,6 +22,10 @@ public class Employee {
 	public void set_group( Group g ) { _group = g; }
 	public Space get_space() { return _space; }
 	public void set_space( Space s ) { _space = s; }
+	public boolean get_mustSitAlone() { return _mustSitAlone; }
+	public void set_mustSitAlone( boolean b ) { _mustSitAlone = b; }
+	public boolean get_mustSitInRoom() { return _mustSitInRoom; }
+	public void set_mustSitInRoom( boolean b ) { _mustSitInRoom = b; }
 	
 	public Element to_xml(Document xml_doc) {
 		Element res = xml_doc.createElement("Employee");
@@ -42,7 +48,11 @@ public class Employee {
 		res.appendChild(xml_doc.createTextNode( _name ));
 		return res;
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		return get_id() == ((Employee)obj).get_id();
+	}
 	public Employee( Node node, Company company ) {
 		
         if (node.getNodeType() == Node.ELEMENT_NODE) {

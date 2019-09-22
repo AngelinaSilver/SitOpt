@@ -1,6 +1,6 @@
 import java.util.Vector;
 
-public class Solver implements SolverIntf {
+public class SolverMockup implements SolverIntf {
 
 	@Override
 	public boolean populate(Company cmpny) throws SolverException {
@@ -25,5 +25,7 @@ public class Solver implements SolverIntf {
 		
 		throw new SolverException("NOT ENOUGH SPACE");
 	}
-
+	
+	@Override
+	public void set_max_distance( int distance ) { }
 }
