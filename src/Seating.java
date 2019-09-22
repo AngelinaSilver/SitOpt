@@ -73,8 +73,8 @@ public class Seating {
         addBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                Company company = SimpleExample.create_company1();
-                AddEmployeeDialog dialog = new AddEmployeeDialog(frame, "Add new Employee", company);
+                //Company company = SimpleExample.create_company1();
+                AddEmployeeDialog dialog = new AddEmployeeDialog(frame, "Add new Employee", MainPanel.company);
                 dialog.setSize(500, 1000);
                 dialog.pack();
                 dialog.setVisible(true);

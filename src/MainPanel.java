@@ -1,6 +1,10 @@
 import java.io.File;
 
+
+
 public class MainPanel {
+
+    static Company company;
 
     public static void main(final String[] args){
 
@@ -12,7 +16,7 @@ public class MainPanel {
         }
         Seating seating = new Seating();
         seating.initPanel();
-        Company company = SimpleExample.create_company1();
+        company = SimpleExample.create_company1();
         UIBuildingPopulation ui = new UIBuildingPopulation(seating);
         ui.populateOffice(company,null);
 
