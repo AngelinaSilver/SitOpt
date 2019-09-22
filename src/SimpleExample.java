@@ -23,12 +23,16 @@ public class SimpleExample {
 		Building b1 = new Building(1, "PK");
 		c.add_building( b1 );
 		Space s1 = new Space(1, b1, false, 3);
+		s1.set_cords(600,60,30,30);
 		b1.add_space( s1 );
 		Space s2 = new Space(2, b1, false, 2);
+		s2.set_cords(887,95,30,30);
 		b1.add_space( s2 );
 		Space s3 = new Space(3, b1, false, 3);
+		s3.set_cords(883,180,30,30);
 		b1.add_space( s3 );
-		Space s4 = new Space(4, b1, true, 1);
+		Space s4 = new Space(4, b1, true, 2);
+		s4.set_cords(485,510,30,30);
 		b1.add_space( s4 );
 		
 		// add groups
