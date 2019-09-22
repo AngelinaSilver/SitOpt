@@ -17,20 +17,19 @@ public class Space {
 	
 	public Vector<Employee> _seats;
 	
-	public Space( int id, Building b, boolean is_room, int capacity, int x, int y ) {
+	public Space( int id, Building b, boolean is_room, int capacity) {
 		_id = id;
 		_building = b;
 		_is_room = is_room;
 		_capacity = capacity;
 		_seats = new Vector<Employee>();
-		_x=x;
-		_y=y;
 	}
 	
 	public int get_id() { return _id; }
 	public boolean is_room() { return _is_room; }
 	public int get_capacity() { return _capacity; }
 	public Building get_building() { return _building; }
+	public void set_cords( int x, int y, int w, int h ) { _x=x; _y=y; _w=w; _h=h; }
 	public int get_x(){ return _x;}
 	public int get_y(){ return _y;}
 	public int get_w(){ return _w;}

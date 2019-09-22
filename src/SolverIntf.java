@@ -8,4 +8,6 @@
 	  * @return true if employees' sitting was changed. Otherwise, false (no changed was made).
 	  */
 	public boolean populate( Company cmpny ) throws SolverException;
+	
+	public void set_max_distance( int distance );
 }
