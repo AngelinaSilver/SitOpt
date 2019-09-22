@@ -217,15 +217,18 @@ public class Seating {
                 person.setBackground(Color.RED);
                 Employee e = space._seats.elementAt(i);
                 person.setEmployee(e);
+                person.setToolTipText("<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name()+"</html>");
                 if(leave.contains(e)){
                     //need to highlight this person
                     person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
                     if(add.size()>0){ //there is new person
                         Employee em = add.get(0);
+                        String toolTip = "<html> Current Occupant: ID= " +e.get_id()+" Name="+e.get_name()+" <br> Future Occupation: ID= "+ em.get_id() +"Name="+ em.get_name()+" </html> ";
+                        person.setToolTipText(toolTip);
                         //toolTip
                         add.remove(0);
-
                     }
+
                 }
                 countr--;
             }
@@ -233,6 +236,9 @@ public class Seating {
                 person.setBackground(Color.GREEN);
                 if(add.size()>0){
                     person.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+                    Employee e = add.get(0);
+                    person.setToolTipText("<html> Future Occupation: ID= " +e.get_id()+" Name="+e.get_name()+"</html>");
+                    add.remove(0);
                     //change ToolTip + delete person
                 }
 
