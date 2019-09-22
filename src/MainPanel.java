@@ -13,6 +13,7 @@ public class MainPanel {
         Seating seating = new Seating();
         seating.initPanel();
 
+
     }
 
     private static void readJson(String fileName){

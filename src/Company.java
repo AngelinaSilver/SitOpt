@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Vector;
 
 import org.w3c.dom.Document;
@@ -17,6 +18,18 @@ public class Company {
 	public void add_building( Building b ) { _buildings.add( b ); }
 	public void add_group( Group g ) { _groups.add( g ); }
 	public void add_employee( Employee e ) { _employes.add( e ); }
+	public int get_next_employee_id() { return (_employes.lastElement().get_id() + 1); }
+
+	public Group getGroupByName(String groupName) {
+		Iterator groupIt = _groups.iterator();
+		while (groupIt.hasNext()) {
+			Group g = (Group) groupIt.next();
+			if(g.get_name().equals(groupName)) {
+				return g;
+			}
+		}
+		return null;
+	}
 	
 	public Element to_xml(Document xml_doc) {
 		Element res = xml_doc.createElement("Company");
@@ -41,4 +54,5 @@ public class Company {
 		
 		return res;
 	}
+
 }
