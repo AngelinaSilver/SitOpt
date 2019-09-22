@@ -14,6 +14,8 @@ public class AddEmployeeDialog extends JDialog {
     JCheckBox isOffice = new JCheckBox("Need an office");
     JCheckBox isAlone = new JCheckBox("Must sit alone");
 
+    JLabel statusLabel = new JLabel("                                                      ");
+
     private JButton confirmBtn = new JButton("Add");
 
     public AddEmployeeDialog(JFrame frame, String title, Company company) {
@@ -26,10 +28,7 @@ public class AddEmployeeDialog extends JDialog {
         gbc.insets = new Insets(2,2,2,2);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel spacer = new JLabel(" ");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        panel.add(spacer,gbc);
+
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -39,6 +38,8 @@ public class AddEmployeeDialog extends JDialog {
         gbc.gridx = 1;
         gbc.gridy = 1;
         panel.add(nameTxt, gbc);
+
+        gbc.insets = new Insets(2,2,2,2);
 
         gbc.gridwidth = 2;
         gbc.gridx = 0;
@@ -64,27 +65,47 @@ public class AddEmployeeDialog extends JDialog {
         gbc.gridy = 2;
         panel.add(isAlone, gbc);
 
-        gbc.gridx = 0;
+        /*gbc.gridx = 0;
         gbc.gridy = 4;
-        panel.add(spacer,gbc);
+        panel.add(spacer,gbc);*/
+
+        gbc.gridwidth = 4;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panel.add(statusLabel, gbc);
+
+        /*gbc.gridx = 0;
+        gbc.gridy = 6;
+        panel.add(spacer,gbc);*/
 
         gbc.gridwidth = 1;
         gbc.gridx = 2;
-        gbc.gridy = 5;
+        gbc.gridy = 7;
         panel.add(confirmBtn, gbc );
 
 
         confirmBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Employee emp = new Employee(company.get_next_employee_id(), nameTxt.getText());
-                emp.set_mustSitAlone(isAlone.isSelected());
-                emp.set_mustSitInRoom(isOffice.isSelected());
-                //TO DO RACHEL - add group
-                //emp.set_group(gr);
-                String group_name = group.getSelectedItem().toString();
-                emp.set_group(company.getGroupByName(group_name));
-                company.add_employee(emp);
-                System.out.println("A new employee: " + emp.get_name() + " has been added with ID: " + emp.get_id() + " from group " + emp.get_group().get_name());
+                if(nameTxt.getText() == "" || nameTxt.getText().isEmpty())
+                {
+                    AddEmployeeDialog.this.statusLabel.setText("Employee Name is empty!");
+                    AddEmployeeDialog.this.statusLabel.setForeground(Color.RED);
+                }
+                else {
+                    AddEmployeeDialog.this.statusLabel.setForeground(Color.BLACK);
+                    Employee emp = new Employee(company.get_next_employee_id(), nameTxt.getText());
+                    emp.set_mustSitAlone(isAlone.isSelected());
+                    emp.set_mustSitInRoom(isOffice.isSelected());
+                    //TO DO RACHEL - add group
+                    //emp.set_group(gr);
+                    String group_name = group.getSelectedItem().toString();
+                    emp.set_group(company.getGroupByName(group_name));
+                    company.add_employee(emp);
+                    String str = "A new employee: " + emp.get_name() + " has been added with ID: " + emp.get_id() + " from group " + emp.get_group().get_name();
+                    AddEmployeeDialog.this.statusLabel.setText(str);
+                    System.out.println(str);
+                    AddEmployeeDialog.this.nameTxt.setText("");
+                }
             }
         } );
 
