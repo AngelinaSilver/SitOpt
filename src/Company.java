@@ -10,6 +10,9 @@ public class Company {
 	
 	public Company() { }
 	
+	public void add_building( Building b ) { _buildings.add( b ); }
+	public void add_group( Group g ) { _groups.add( g ); }
+	public void add_employee( Employee e ) { _employes.add( e ); }
 	
 	public Element to_xml(Document xml_doc) {
 		Element res = xml_doc.createElement("Company");

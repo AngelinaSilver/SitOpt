@@ -17,6 +17,8 @@ public class Building {
 	public int get_id() { return _id; }
 	public String get_name() { return _name; }
 	
+	public void add_space( Space s ) { _spaces.add( s ); }
+	
 	public Element to_xml(Document xml_doc) {
 		Element res = xml_doc.createElement("Building");
 		res.setAttribute("id", String.valueOf( _id ) );
