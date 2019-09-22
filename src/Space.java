@@ -17,14 +17,12 @@ public class Space {
 	
 	public Vector<Employee> _seats;
 	
-	public Space( int id, Building b, boolean is_room, int capacity, int x, int y) {
+	public Space( int id, Building b, boolean is_room, int capacity) {
 		_id = id;
 		_building = b;
 		_is_room = is_room;
 		_capacity = capacity;
 		_seats = new Vector<Employee>();
-		_x=x;
-		_y=y;
 	}
 	
 	public int get_id() { return _id; }
